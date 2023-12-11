@@ -18,7 +18,7 @@ class Viewport {
         this.#addEventListeners();
     }
 
-    reset(){
+    reset() {
         this.ctx.restore();
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.save();
@@ -26,27 +26,26 @@ class Viewport {
         this.ctx.scale(1 / this.zoom, 1 / this.zoom);
         const offset = this.getOffset();
         this.ctx.translate(offset.x, offset.y);
-    }
-
-
-    getMouse(evt, subtractDragOffset = false){
+     }  
+     
+     getMouse(evt, subtractDragOffset = false) {
         const p = new Point(
-            (evt.offsetX - this.center.x) * this.zoom - this.offset.x,
-            (evt.offsetY - this.center.y) * this.zoom - this.offset.y
+           (evt.offsetX - this.center.x) * this.zoom - this.offset.x,
+           (evt.offsetY - this.center.y) * this.zoom - this.offset.y
         );
         return subtractDragOffset ? subtract(p, this.drag.offset) : p;
-    }
+     }
 
-    getOffset(){
+     getOffset() {
         return add(this.offset, this.drag.offset);
-    }
+     }
 
-    #addEventListeners() {
+     #addEventListeners() {
         this.canvas.addEventListener("mousewheel", this.#handleMouseWheel.bind(this));
         this.canvas.addEventListener("mousedown", this.#handleMouseDown.bind(this));
         this.canvas.addEventListener("mousemove", this.#handleMouseMove.bind(this));
         this.canvas.addEventListener("mouseup", this.#handleMouseUp.bind(this));
-    }
+     }
 
     #handleMouseWheel(evt){
         const dir = Math.sign(evt.deltaY);
