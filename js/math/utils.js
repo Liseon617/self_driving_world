@@ -76,7 +76,7 @@ function getIntersection(A, B, C, D) {
   const uTop = (C.y - A.y) * (A.x - B.x) - (C.x - A.x) * (A.y - B.y);
   const bottom = (D.y - C.y) * (B.x - A.x) - (D.x - C.x) * (B.y - A.y);
 
-  const eps = 0.00001;
+  const eps = 0.0001;
   //eps to deal with the floating point problem of being approx 0
   if (Math.abs(bottom) > eps) {
     const t = tTop / bottom;
